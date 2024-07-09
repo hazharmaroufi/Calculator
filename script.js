@@ -29,6 +29,7 @@ const operate = function (operator, firstNumber, lastNumber) {
   return result;
 }
 
+const the__0 = document.querySelector("#the__0");
 const the__1 = document.querySelector("#the__1");
 const the__2 = document.querySelector("#the__2");
 const the__3 = document.querySelector("#the__3");
@@ -49,12 +50,7 @@ const result = document.querySelector(".result");
 const selectors = document.querySelectorAll(".selector");
 
 result.textContent = 0;
-// function display(e) {
-//   let theDisplayedNumber = e.target.innerText;
-//   result.textContent = theDisplayedNumber;
-// }
 function display(led) {
-  console.log(led);
   result.textContent = led
 }
 
@@ -63,34 +59,27 @@ selectors.forEach(selector => {
   selector.addEventListener("click", () => {
     operator = selector.value;
     display(operator)
-    console.log("operator : " + operator);
   })
 })
 
 const theNumbers = document.querySelectorAll(".num");
 theNumbers.forEach(number => {
-  // number.addEventListener("click", () => {
-  //   display(number.value)
-  // });
   number.addEventListener("click", () => {
-    if (operator) {
+    if (!operator) {
       firstNumber += number.value;
       display(firstNumber)
     } else {
       lastNumber += number.value;
       display(lastNumber)
     }
-
-    console.log("firstNumber : " + firstNumber);
-    console.log("lastNumber : " + lastNumber);
   });
 
 });
 
 the__equal.addEventListener("click", () => {
   let finalResult = operate(operator, firstNumber, lastNumber);
-  console.log(finalResult);
-  display(finalResult);
+  let roundedFinalResult = Math.round(finalResult * 10) / 10
+  display(roundedFinalResult);
 })
 
 the__clear.addEventListener("click", () => {
