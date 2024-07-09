@@ -48,13 +48,21 @@ const the__clear = document.querySelector("#the__clear");
 const result = document.querySelector(".result");
 const selectors = document.querySelectorAll(".selector");
 
-result.textContent = "0";
-function display(e) {
-  let theDisplayedNumber = e.target.innerText;
-  result.textContent = theDisplayedNumber;
+result.textContent = 0;
+// function display(e) {
+//   let theDisplayedNumber = e.target.innerText;
+//   result.textContent = theDisplayedNumber;
+// }
+function display(led) {
+  console.log(led);
+  result.textContent = led
 }
+
+// سلکتور رو وقتی کلیک میکنیم نمایش میده و اجرا میکنه
 selectors.forEach(selector => {
-  selector.addEventListener("click", display);
+  selector.addEventListener("click", () => {
+    display(selector.value)
+  });
   selector.addEventListener("click", () => {
     operator = selector.value;
     console.log("operator : " + operator);
@@ -63,7 +71,9 @@ selectors.forEach(selector => {
 
 const theNumbers = document.querySelectorAll(".num");
 theNumbers.forEach(number => {
-  number.addEventListener("click", display);
+  number.addEventListener("click", () => {
+    display(number.value)
+  });
   number.addEventListener("click", () => {
     if (!firstNumber) {
       firstNumber = number.value;
@@ -80,7 +90,7 @@ theNumbers.forEach(number => {
 the__equal.addEventListener("click", () => {
   let finalResult = operate(operator, firstNumber, lastNumber);
   console.log(finalResult);
-  result.textContent = finalResult;
+  display(finalResult);
 })
 
 the__clear.addEventListener("click", () => {
