@@ -61,26 +61,26 @@ function display(led) {
 // سلکتور رو وقتی کلیک میکنیم نمایش میده و اجرا میکنه
 selectors.forEach(selector => {
   selector.addEventListener("click", () => {
-    display(selector.value)
-  });
-  selector.addEventListener("click", () => {
     operator = selector.value;
+    display(operator)
     console.log("operator : " + operator);
   })
 })
 
 const theNumbers = document.querySelectorAll(".num");
 theNumbers.forEach(number => {
+  // number.addEventListener("click", () => {
+  //   display(number.value)
+  // });
   number.addEventListener("click", () => {
-    display(number.value)
-  });
-  number.addEventListener("click", () => {
-    if (!firstNumber) {
-      firstNumber = number.value;
+    if (operator) {
+      firstNumber += number.value;
+      display(firstNumber)
     } else {
-      lastNumber = number.value;
-
+      lastNumber += number.value;
+      display(lastNumber)
     }
+
     console.log("firstNumber : " + firstNumber);
     console.log("lastNumber : " + lastNumber);
   });
